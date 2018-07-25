@@ -17,7 +17,6 @@ edit-readme er:
 build b:
 	go build
 
-
 git g:
 	git add README.md Makefile *.go h264parser/ aacparser/
 	git commit -m "2nd revision"
