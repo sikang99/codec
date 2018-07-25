@@ -1,4 +1,11 @@
 
+
+Update
+====
+
+[libav Deprecated List](https://libav.org/documentation/doxygen/master/deprecated.html)
+
+
 codec
 ====
 

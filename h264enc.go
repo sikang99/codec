@@ -25,7 +25,7 @@ import (
 		} h264enc_t;
 
 		static int h264enc_new(h264enc_t *m) {
-			m->c = avcodec_find_encoder(CODEC_ID_H264);
+			m->c = avcodec_find_encoder(AV_CODEC_ID_H264);
 			m->ctx = avcodec_alloc_context3(m->c);
 			m->ctx->width = m->w;
 			m->ctx->height = m->h;
@@ -65,11 +65,11 @@ func NewH264Encoder(
 	m.Pixfmt = pixfmt
 	switch pixfmt {
 	case image.YCbCrSubsampleRatio444:
-		m.m.pixfmt = C.PIX_FMT_YUV444P
+		m.m.pixfmt = C.AV_PIX_FMT_YUV444P
 	case image.YCbCrSubsampleRatio422:
-		m.m.pixfmt = C.PIX_FMT_YUV422P
+		m.m.pixfmt = C.AV_PIX_FMT_YUV422P
 	case image.YCbCrSubsampleRatio420:
-		m.m.pixfmt = C.PIX_FMT_YUV420P
+		m.m.pixfmt = C.AV_PIX_FMT_YUV420P
 	}
 	for _, opt := range opts {
 		a := strings.Split(opt, ",")
@@ -119,8 +119,10 @@ func (m *H264Encoder) Encode(img *image.YCbCr) (out h264Out, err error) {
 	}
 
 	C.av_init_packet(&m.m.pkt)
-	r := C.avcodec_encode_video2(m.m.ctx, &m.m.pkt, f, &m.m.got)
-	defer C.av_free_packet(&m.m.pkt)
+	//r := C.avcodec_encode_video2(m.m.ctx, &m.m.pkt, f, &m.m.got)
+	r := C.avcodec_send_frame(m.m.ctx, f)
+	//defer C.av_free_packet(&m.m.pkt)
+	defer C.av_packet_unref(&m.m.pkt)
 	if int(r) < 0 {
 		err = errors.New("encode failed")
 		return

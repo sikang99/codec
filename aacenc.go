@@ -17,7 +17,7 @@ import (
 			} aacenc_t ;
 
 			static int aacenc_new(aacenc_t *m) {
-				m->c = avcodec_find_encoder(CODEC_ID_AAC);
+				m->c = avcodec_find_encoder(AV_CODEC_ID_AAC);
 				m->ctx = avcodec_alloc_context3(m->c);
 				m->ctx->sample_fmt = AV_SAMPLE_FMT_FLTP;
 				m->ctx->sample_rate = m->samplerate;
@@ -38,7 +38,8 @@ import (
 				m->f->nb_samples = 1024;
 				m->f->extended_data = m->f->data;
 				m->f->linesize[0] = 4096;
-				avcodec_encode_audio2(m->ctx, &pkt, m->f, &m->got);
+				//avcodec_encode_audio2(m->ctx, &pkt, m->f, &m->got);
+				avcodec_send_frame(m->ctx, m->f);
 				av_log(m->ctx, AV_LOG_DEBUG, "got %d size %d\n", m->got, pkt.size);
 				m->size = pkt.size;
 			}

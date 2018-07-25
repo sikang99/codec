@@ -15,7 +15,7 @@ import (
 		} aacdec_t ;
 
 		static int aacdec_new(aacdec_t *m, uint8_t *buf, int len) {
-			m->c = avcodec_find_decoder(CODEC_ID_AAC);
+			m->c = avcodec_find_decoder(AV_CODEC_ID_AAC);
 			m->ctx = avcodec_alloc_context3(m->c);
 			m->f = av_frame_alloc();
 			m->ctx->extradata = buf;
@@ -31,7 +31,8 @@ import (
 			pkt.data = data;
 			pkt.size = len;
 			av_log(m->ctx, AV_LOG_DEBUG, "decode %p\n", m);
-			return avcodec_decode_audio4(m->ctx, m->f, &m->got, &pkt);
+			//return avcodec_decode_audio4(m->ctx, m->f, &m->got, &pkt);
+			return avcodec_receive_frame(m->ctx, m->f);
 		}
 	*/
 	"C"
