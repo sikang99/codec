@@ -14,6 +14,10 @@ edit-make em:
 edit-readme er:
 	vi README.md
 
+
+install-pkgs ip:
+	sudo apt install libavcodec-dev libavformat-dev libavutil-dev libavdevice-dev libswscale-dev
+
 build b:
 	go build
 
@@ -24,7 +28,7 @@ git  g:
 
 git-up gu:
 	git add README.md Makefile *.go h264parser/ aacparser/
-	git commit -m "2nd revision"
+	git commit -m "Modified to use the latest libav library"
 	git push origin master
 
 git-set gs:
