@@ -4,6 +4,8 @@ Update
 ====
 
 [libav Deprecated List](https://libav.org/documentation/doxygen/master/deprecated.html)
+[libaom AV1 Encoding Guide](https://trac.ffmpeg.org/wiki/Encode/AV1)
+
 
 
 codec

@@ -14,9 +14,10 @@ edit-make em:
 edit-readme er:
 	vi README.md
 
-
 install-pkgs ip:
-	sudo apt install libavcodec-dev libavformat-dev libavutil-dev libavdevice-dev libswscale-dev
+	-sudo apt install libavcodec-dev libavformat-dev libavfilter-dev libavutil-dev libavdevice-dev libswscale-dev libpostproc-dev
+	-sudo apt install ffmpeg
+	-sudo apt install cmake gcc g++ yasm build-essential
 
 build b:
 	go build
@@ -33,3 +34,4 @@ git-up gu:
 
 git-set gs:
 	git remote set-url origin https://sikang99:----@github.com/sikang99/codec.git
+
