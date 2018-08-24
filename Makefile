@@ -5,9 +5,10 @@ all: usage
 
 usage:
 	@echo ""
-	@echo "usage: make [edit|build|run|test]"
+	@echo "usage: make [edit|build|run|git]"
 	@echo ""
 
+#--------------------------------------------------------------------------------------
 edit-make em:
 	vi Makefile
 
@@ -22,6 +23,7 @@ install-pkgs ip:
 build b:
 	go build
 
+#--------------------------------------------------------------------------------------
 git  g:
 	@echo ""
 	@echo "make (git) [up|set]"
