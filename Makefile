@@ -28,7 +28,7 @@ git  g:
 	@echo ""
 
 git-up gu:
-	git add README.md Makefile *.go h264parser/ aacparser/
+	git add README.md Makefile *.go h264parser/ aacparser/ vendor/
 	git commit -m "Modified to use the latest libav library"
 	git push origin master
 
